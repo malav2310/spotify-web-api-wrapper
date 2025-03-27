@@ -23,6 +23,7 @@ public class EpisodeApiRetrofit implements EpisodeApi {
     private final Logger logger = LoggerFactory.getLogger(EpisodeApiRetrofit.class);
     private final String accessToken;
     private final EpisodeService episodeService;
+    private final int MAX_EPISODE_ID_ALLOWED = 50;
 
     public EpisodeApiRetrofit(final String accessToken) {
         this(accessToken, RetrofitHttpServiceFactory.getEpisodeService());
@@ -58,7 +59,7 @@ public class EpisodeApiRetrofit implements EpisodeApi {
 
     @Override
     public EpisodeFullCollection getEpisodes(List<String> listOfEpisodeIds, Map<String, String> options) {
-        validateEpisodeListSizeAndThrowIfExceeded(listOfEpisodeIds, 50);
+        validateEpisodeListSizeAndThrowIfExceeded(listOfEpisodeIds, MAX_EPISODE_ID_ALLOWED);
         options = ValidatorUtil.optionsValueCheck(options);
 
         String episodeIds = String.join(",", listOfEpisodeIds);
