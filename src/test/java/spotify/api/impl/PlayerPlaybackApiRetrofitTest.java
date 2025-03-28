@@ -18,7 +18,6 @@ import spotify.models.players.CurrentlyPlayingObject;
 import spotify.models.players.PlayHistory;
 import spotify.models.players.requests.ChangePlaybackStateRequestBody;
 import spotify.models.players.requests.TransferPlaybackRequestBody;
-import spotify.retrofit.services.PlayerService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,15 +26,14 @@ import java.util.Arrays;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class PlayerApiRetrofitTest extends AbstractApiRetrofitTest {
+public class PlayerPlaybackApiRetrofitTest extends AbstractPlayerApiRetrofitTest {
+   
     private final String fakeUri = "https://jiankai.nl";
     private final int fakeMsPosition = 69;
     private final int fakeVolumePercent = 420;
     private final boolean fakeShuffle = false;
     private final RepeatType fakeRepeatMode = RepeatType.CONTEXT;
-    private PlayerApiRetrofit sut;
-    @Mock
-    private PlayerService mockedPlayerService;
+
     @Mock
     private Call<CursorBasedPaging<PlayHistory>> mockedCursorBasedPagingPlayHistoryCall;
     @Mock

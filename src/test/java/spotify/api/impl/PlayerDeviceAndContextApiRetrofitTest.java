@@ -22,7 +22,7 @@ import java.io.IOException;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class PlayerDeviceAndContextApiRetrofitTest extends AbstractApiRetrofitTest {
+public class PlayerDeviceAndContextApiRetrofitTest extends AbstractPlayerApiRetrofitTest {
     
     private PlayerApiRetrofit sut;
     @Mock
