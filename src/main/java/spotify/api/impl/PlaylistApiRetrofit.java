@@ -293,7 +293,7 @@ public class PlaylistApiRetrofit implements PlaylistApi {
 
     @Override
     public void uploadCoverImageToPlaylist(String playlistId, String base64EncodedJpegImage) {
-        PlaylistApiValidator.validateInputs(playlistId, base64EncodedJpegImage);
+        validateInputs(playlistId, base64EncodedJpegImage);
     
         //this is done because Retrofit converts @Body automatically to json, by passing in a RequestBody with media type text/plain it will not be converted to json
         logger.trace("Creating OkHttp3 request body with text/plain media type");
@@ -364,11 +364,8 @@ public class PlaylistApiRetrofit implements PlaylistApi {
             requestBody.setSnapshotId(null);
         }
     }
-}
 
-
-class PlaylistApiValidator {
-    public static void validateInputs(String playlistId, String base64EncodedJpegImage) {
+    private void validateInputs(String playlistId, String base64EncodedJpegImage) {
         if (isNullOrEmpty(playlistId)) {
             throw new IllegalArgumentException("Playlist ID is required and cannot be empty.");
         }
@@ -378,7 +375,11 @@ class PlaylistApiValidator {
         }
     }
     
-    private static boolean isNullOrEmpty(String input) {
+    private boolean isNullOrEmpty(String input) {
         return input == null || input.isEmpty();
     }
+
 }
+
+
+
